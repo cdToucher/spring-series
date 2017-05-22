@@ -1,4 +1,4 @@
-package me.codebase.jpa.entry;
+package me.codebase.jpa.example.entry;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

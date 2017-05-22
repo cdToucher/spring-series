@@ -1,10 +1,12 @@
-package me.codebase.jpa.entry;
+package me.codebase.jpa.example.entry;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
@@ -14,8 +16,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  * app configuration
  */
 @Configuration
-@EnableJpaRepositories(basePackages = {"me.codebase.jpa.repository"})
-@ComponentScan("me.codebase.jpa")
+@EnableJpaRepositories(basePackages = {"me.codebase.jpa.example.repository"})
+@EnableAspectJAutoProxy
+@ComponentScan("me.codebase.jpa.example.action")
 public class AppConfig {
 
     @Bean
@@ -27,12 +30,19 @@ public class AppConfig {
         return dataSource;
     }
 
-    @Bean
+    @Bean("entityManagerFactory")
     public static LocalContainerEntityManagerFactoryBean getJpaFactoryBean() {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         bean.setDataSource(getDataSource());
-        bean.setPackagesToScan("me.codebase.jpa");
+        bean.setPackagesToScan("me.codebase.jpa.example.entity");
         bean.setJpaVendorAdapter(getHibernateJpaVendorAdapter());
+        return bean;
+    }
+
+    @Bean("transactionManager")
+    public static JpaTransactionManager getJpaTransactionManager() {
+        JpaTransactionManager bean = new JpaTransactionManager();
+        bean.setDataSource(getDataSource());
         return bean;
     }
 

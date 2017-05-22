@@ -1,4 +1,4 @@
-package me.codebase.jpa.entity;
+package me.codebase.jpa.example.entity;
 
 
 import javax.persistence.*;
