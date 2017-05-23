@@ -12,6 +12,7 @@
     <properties>
         <version>${project.version}</version>
         <spring-mvc.version>4.3.8.RELEASE</spring-mvc.version>
+        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
         <spring-data.version>1.11.3.RELEASE</spring-data.version>
         <guava.version>20.0</guava.version>
         <commons.version>3.5</commons.version>
@@ -19,14 +20,31 @@
         <dbcp2.version>2.1.1</dbcp2.version>
         <persistence.version>2.1.1</persistence.version>
         <hiberbnate-entitymanager>5.2.10.Final</hiberbnate-entitymanager>
+        <spring-cloud-cfg.version>1.3.1.RELEASE</spring-cloud-cfg.version>
     </properties>
 
     <modules>
         <module>spring-data-jpa-examples</module>
+        <module>spring-cloud-config</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-client</artifactId>
+                <version>${spring-cloud-cfg.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-server</artifactId>
+                <version>${spring-cloud-cfg.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>

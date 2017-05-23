@@ -17,7 +17,4 @@ public interface ExampleRepository extends JpaRepository<User, Long> {
 
     Page<User> findAllByName(String userName, Pageable pageable);
 
-    @Transactional
-    @Query
-    int queryByMyself();
 }
